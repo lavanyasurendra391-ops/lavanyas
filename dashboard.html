@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard – ShopEase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🛍</div><span>ShopEase</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="dashboard.html" class="active">Dashboard</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="darkToggle">🌙</button>
+      <button class="nav-icon-btn" onclick="window.location='products.html'">
+        🤍 <span id="wishlistCount" class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="nav-icon-btn" onclick="window.location='cart.html'">
+        🛒 <span id="cartCount" class="cart-badge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="products.html">🛍️ Products</a>
+  <a href="cart.html">🛒 Cart</a>
+  <a href="dashboard.html" class="active">📊 Dashboard</a>
+</div>
+
+<!-- DASHBOARD LAYOUT -->
+<div class="dashboard-layout">
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-header">
+      <div class="dash-avatar">
+        <div class="avatar-img">👤</div>
+        <div class="avatar-info">
+          <strong>Admin User</strong>
+          <span>Super Admin</span>
+        </div>
+      </div>
+    </div>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-label">Main Menu</div>
+      <a href="#overview"   class="dash-nav-item active" data-section="overview">   <span>📊</span> Overview</a>
+      <a href="#orders"     class="dash-nav-item" data-section="orders">             <span>📦</span> Orders</a>
+      <a href="#products"   class="dash-nav-item" data-section="products">           <span>🛍️</span> Products</a>
+      <a href="#customers"  class="dash-nav-item" data-section="customers">          <span>👥</span> Customers</a>
+      <a href="#analytics"  class="dash-nav-item" data-section="analytics">          <span>📈</span> Analytics</a>
+
+      <div class="dash-nav-label" style="margin-top:1.5rem;">Settings</div>
+      <a href="#settings"  class="dash-nav-item" data-section="settings">  <span>⚙️</span> Settings</a>
+      <a href="index.html" class="dash-nav-item">                           <span>🏠</span> Back to Shop</a>
+    </nav>
+
+    <button class="dash-sidebar-toggle" id="sidebarToggle">◀</button>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="dash-main" id="dashMain">
+
+    <!-- HEADER BAR -->
+    <div class="dash-topbar">
+      <div class="dash-page-title">
+        <button class="hamburger" id="dashHamburger" style="display:none;"><span></span><span></span><span></span></button>
+        <div>
+          <h2 id="dashPageTitle">Overview</h2>
+          <p id="dashPageSub">Welcome back, here's what's happening today.</p>
+        </div>
+      </div>
+      <div class="dash-topbar-actions">
+        <span class="dash-date">📅 July 20, 2026</span>
+        <button class="btn btn-primary btn-sm">+ New Order</button>
+      </div>
+    </div>
+
+    <!-- STATS CARDS -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card glass-card">
+        <div class="stat-icon stat-icon-purple">📦</div>
+        <div class="stat-content">
+          <p class="stat-label">Total Orders</p>
+          <h3 class="stat-value" data-target="12847">0</h3>
+          <span class="stat-change positive">↑ 12.5% vs last month</span>
+        </div>
+      </div>
+      <div class="stat-card glass-card">
+        <div class="stat-icon stat-icon-blue">💰</div>
+        <div class="stat-content">
+          <p class="stat-label">Total Revenue</p>
+          <h3 class="stat-value" data-target="284750" data-prefix="$">$0</h3>
+          <span class="stat-change positive">↑ 8.3% vs last month</span>
+        </div>
+      </div>
+      <div class="stat-card glass-card">
+        <div class="stat-icon stat-icon-green">👥</div>
+        <div class="stat-content">
+          <p class="stat-label">Total Customers</p>
+          <h3 class="stat-value" data-target="48291">0</h3>
+          <span class="stat-change positive">↑ 5.1% vs last month</span>
+        </div>
+      </div>
+      <div class="stat-card glass-card">
+        <div class="stat-icon stat-icon-orange">🛍️</div>
+        <div class="stat-content">
+          <p class="stat-label">Total Products</p>
+          <h3 class="stat-value" data-target="1842">0</h3>
+          <span class="stat-change negative">↓ 2.1% vs last month</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHART + TOP PRODUCTS ROW -->
+    <div class="dash-row">
+      <!-- SALES CHART -->
+      <div class="chart-card glass-card">
+        <div class="chart-header">
+          <div>
+            <h3>Monthly Sales</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Revenue and orders over the past 12 months</p>
+          </div>
+          <div class="chart-tabs">
+            <button class="chart-tab active" data-type="sales">Revenue</button>
+            <button class="chart-tab" data-type="orders">Orders</button>
+          </div>
+        </div>
+        <div class="chart-area" id="chartArea">
+          <canvas id="salesChart"></canvas>
+        </div>
+      </div>
+
+      <!-- TOP PRODUCTS -->
+      <div class="top-products-card glass-card">
+        <div class="chart-header">
+          <h3>Top Selling</h3>
+          <a href="products.html" class="btn btn-ghost btn-sm">View All →</a>
+        </div>
+        <div class="top-products-list" id="topProductsList">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- RECENT ORDERS TABLE -->
+    <div class="orders-card glass-card" style="margin-top:1.5rem;">
+      <div class="chart-header">
+        <div>
+          <h3>Recent Orders</h3>
+          <p style="font-size:0.85rem; color:var(--text-muted);">Latest customer orders</p>
+        </div>
+        <div style="display:flex; gap:0.5rem; align-items:center;">
+          <div class="input-group" style="width:220px;">
+            <span class="input-icon">🔍</span>
+            <input type="text" class="input" id="ordersSearch" placeholder="Search orders..." style="height:38px; font-size:0.85rem;" />
+          </div>
+          <select class="input" id="ordersFilter" style="width:140px; height:38px; font-size:0.85rem;">
+            <option value="all">All Status</option>
+            <option value="delivered">Delivered</option>
+            <option value="shipped">Shipped</option>
+            <option value="processing">Processing</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="orders-table" id="ordersTable">
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Product</th>
+              <th>Date</th>
+              <th>Amount</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTableBody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- QUICK STATS ROW -->
+    <div class="quick-stats-row" style="margin-top:1.5rem;">
+      <div class="quick-stat glass-card">
+        <div class="qs-icon">📬</div>
+        <div class="qs-content">
+          <p class="qs-label">Avg Order Value</p>
+          <h4 class="qs-value">$87.40</h4>
+        </div>
+      </div>
+      <div class="quick-stat glass-card">
+        <div class="qs-icon">🔄</div>
+        <div class="qs-content">
+          <p class="qs-label">Return Rate</p>
+          <h4 class="qs-value">2.3%</h4>
+        </div>
+      </div>
+      <div class="quick-stat glass-card">
+        <div class="qs-icon">⭐</div>
+        <div class="qs-content">
+          <p class="qs-label">Avg Rating</p>
+          <h4 class="qs-value">4.7 / 5</h4>
+        </div>
+      </div>
+      <div class="quick-stat glass-card">
+        <div class="qs-icon">📦</div>
+        <div class="qs-content">
+          <p class="qs-label">Pending Orders</p>
+          <h4 class="qs-value">24</h4>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>
