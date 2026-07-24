@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopEase – Premium Shopping Experience</title>
+  <meta name="description" content="Discover thousands of premium products at unbeatable prices on ShopEase." />
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/home.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🛍</div>
+      <span>ShopEase</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="darkToggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
+      <button class="nav-icon-btn" id="wishlistBtn" title="Wishlist" onclick="window.location='products.html'">
+        🤍 <span id="wishlistCount" class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="nav-icon-btn" id="cartBtn" title="Cart" onclick="window.location='cart.html'">
+        🛒 <span id="cartCount" class="cart-badge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" class="active">🏠 Home</a>
+  <a href="products.html">🛍️ Products</a>
+  <a href="cart.html">🛒 Cart</a>
+  <a href="dashboard.html">📊 Dashboard</a>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <div class="hero-blob blob-1"></div>
+    <div class="hero-blob blob-2"></div>
+    <div class="hero-blob blob-3"></div>
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>✨</span> New Season Collection 2026
+      </div>
+      <h1>Shop the <span class="text-gradient">Future</span><br>of Style &amp; Tech</h1>
+      <p>Discover thousands of premium products curated for your lifestyle. Exclusive deals, fast shipping, and a shopping experience unlike any other.</p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn btn-primary btn-lg">
+          🛍️ Shop Now
+        </a>
+        <a href="products.html?category=electronics" class="btn btn-outline btn-lg">
+          📱 Explore Tech
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <strong>50K+</strong>
+          <span>Products</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>200K+</strong>
+          <span>Happy Customers</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <strong>4.9★</strong>
+          <span>Average Rating</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card-float card-main glass-card">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=320&h=240&fit=crop" alt="Hero product" />
+        <div class="hero-card-info">
+          <span class="product-badge sale">35% OFF</span>
+          <div>
+            <p class="hero-product-name">Pro Wireless Headphones</p>
+            <p class="hero-product-price">$129.99 <s>$199.99</s></p>
+          </div>
+        </div>
+      </div>
+      <div class="hero-float-badge badge-rating glass-card">
+        ⭐ 4.9 Rating
+      </div>
+      <div class="hero-float-badge badge-delivery glass-card">
+        🚀 Free Delivery
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <span class="trust-icon">🚚</span>
+        <div>
+          <strong>Free Shipping</strong>
+          <p>On orders over $50</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🔄</span>
+        <div>
+          <strong>Easy Returns</strong>
+          <p>30-day return policy</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">🔒</span>
+        <div>
+          <strong>Secure Payment</strong>
+          <p>256-bit SSL encryption</p>
+        </div>
+      </div>
+      <div class="trust-item">
+        <span class="trust-icon">💬</span>
+        <div>
+          <strong>24/7 Support</strong>
+          <p>Always here to help</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CATEGORIES ===== -->
+<section class="section" id="categories">
+  <div class="container">
+    <div class="section-header">
+      <div class="subtitle">🗂️ Browse by Category</div>
+      <h2>Shop by <span class="text-gradient">Category</span></h2>
+      <p>Find exactly what you're looking for across our curated collections</p>
+    </div>
+    <div class="categories-grid" id="categoriesGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED PRODUCTS ===== -->
+<section class="section featured-section" id="featured">
+  <div class="container">
+    <div class="section-header">
+      <div class="subtitle">⭐ Hand-Picked for You</div>
+      <h2>Featured <span class="text-gradient">Products</span></h2>
+      <p>Explore our most loved items — quality and style at their finest</p>
+    </div>
+    <div class="products-grid" id="featuredGrid">
+      <!-- Product skeletons -->
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+    </div>
+    <div style="text-align:center; margin-top:2.5rem;">
+      <a href="products.html" class="btn btn-outline btn-lg">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DISCOUNT BANNER ===== -->
+<section class="discount-banner">
+  <div class="banner-bg">
+    <div class="banner-blob bb1"></div>
+    <div class="banner-blob bb2"></div>
+  </div>
+  <div class="container banner-inner">
+    <div class="banner-text">
+      <div class="banner-tag">🔥 Limited Time Offer</div>
+      <h2>Summer Sale — Up to <span>60% OFF</span></h2>
+      <p>Don't miss out on our biggest sale of the year. Thousands of products at unbeatable prices. Offer ends in:</p>
+      <div class="countdown" id="countdown">
+        <div class="countdown-box"><span id="cntDays">02</span><small>Days</small></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-box"><span id="cntHrs">14</span><small>Hours</small></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-box"><span id="cntMins">37</span><small>Mins</small></div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-box"><span id="cntSecs">00</span><small>Secs</small></div>
+      </div>
+      <a href="products.html" class="btn btn-primary btn-lg" style="margin-top:1.5rem;">
+        🛍️ Grab the Deal
+      </a>
+    </div>
+    <div class="banner-visual">
+      <div class="banner-img-wrap">
+        <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=400&h=350&fit=crop" alt="Sale products" />
+        <div class="banner-badge">60% OFF</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRENDING ===== -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="subtitle">🔥 What's Hot Right Now</div>
+      <h2>Trending <span class="text-gradient">This Week</span></h2>
+      <p>See what everyone is talking about this season</p>
+    </div>
+    <div class="trending-list" id="trendingGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="newsletter-card glass-card">
+      <div class="newsletter-content">
+        <div class="newsletter-icon">📬</div>
+        <h2>Stay in the Loop</h2>
+        <p>Subscribe to our newsletter and get exclusive deals, new arrivals, and style tips delivered straight to your inbox.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="newsletter-input-wrap">
+            <input type="email" class="input" placeholder="Enter your email address..." required id="newsletterEmail" />
+            <button type="submit" class="btn btn-primary">Subscribe →</button>
+          </div>
+          <p class="newsletter-note">🔒 No spam, ever. Unsubscribe anytime.</p>
+        </form>
+      </div>
+      <div class="newsletter-decoration">
+        <div class="nl-blob"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-icon">🛍</div>
+          <span>ShopEase</span>
+        </a>
+        <p>Your one-stop destination for premium products. We bring the best deals, fastest shipping, and exceptional customer service.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Twitter">🐦</a>
+          <a href="#" class="social-btn" aria-label="Instagram">📸</a>
+          <a href="#" class="social-btn" aria-label="Facebook">📘</a>
+          <a href="#" class="social-btn" aria-label="YouTube">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="products.html?category=electronics">Electronics</a></li>
+          <li><a href="products.html?category=fashion">Fashion</a></li>
+          <li><a href="products.html?category=home">Home & Living</a></li>
+          <li><a href="products.html?category=sports">Sports</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Order Tracking</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ShopEase. All rights reserved.</p>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center;">
+        <img src="https://img.shields.io/badge/Visa-1A1F71?style=flat&logo=visa&logoColor=white" alt="Visa" height="22" />
+        <img src="https://img.shields.io/badge/Mastercard-EB001B?style=flat&logo=mastercard&logoColor=white" alt="Mastercard" height="22" />
+        <img src="https://img.shields.io/badge/PayPal-00457C?style=flat&logo=paypal&logoColor=white" alt="PayPal" height="22" />
+        <img src="https://img.shields.io/badge/Apple_Pay-000000?style=flat&logo=applepay&logoColor=white" alt="Apple Pay" height="22" />
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-container" id="toastContainer"></div>
+<!-- ===== SCROLL TOP ===== -->
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>
