@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products – ShopEase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/products.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🛍</div>
+      <span>ShopEase</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="darkToggle" title="Toggle dark mode">🌙</button>
+      <button class="nav-icon-btn" onclick="window.location='products.html'">
+        🤍 <span id="wishlistCount" class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="nav-icon-btn" onclick="window.location='cart.html'">
+        🛒 <span id="cartCount" class="cart-badge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="products.html" class="active">🛍️ Products</a>
+  <a href="cart.html">🛒 Cart</a>
+  <a href="dashboard.html">📊 Dashboard</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <h2>Our <span class="text-gradient">Products</span></h2>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <span>Products</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCTS PAGE LAYOUT -->
+<div class="container products-layout">
+
+  <!-- SIDEBAR FILTERS -->
+  <aside class="filters-sidebar" id="filtersSidebar">
+    <div class="filters-header">
+      <h3>Filters</h3>
+      <button class="btn btn-ghost btn-sm" id="clearFilters">Clear All</button>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="filter-group">
+      <h4>Category</h4>
+      <div class="filter-options" id="categoryFilters">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- Price Filter -->
+    <div class="filter-group">
+      <h4>Price Range</h4>
+      <div class="price-range">
+        <div class="price-inputs">
+          <input type="number" class="input" id="minPrice" placeholder="Min $" min="0" />
+          <span>—</span>
+          <input type="number" class="input" id="maxPrice" placeholder="Max $" min="0" />
+        </div>
+        <input type="range" id="priceSlider" min="0" max="1000" value="1000" class="price-slider" />
+        <div class="price-labels">
+          <span>$0</span>
+          <span id="sliderLabel">$1000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Rating Filter -->
+    <div class="filter-group">
+      <h4>Minimum Rating</h4>
+      <div class="rating-filters" id="ratingFilters">
+        <label class="rating-option">
+          <input type="radio" name="minRating" value="0" checked /> Any rating
+        </label>
+        <label class="rating-option">
+          <input type="radio" name="minRating" value="4" /> ⭐⭐⭐⭐ & up
+        </label>
+        <label class="rating-option">
+          <input type="radio" name="minRating" value="4.5" /> ⭐⭐⭐⭐½ & up
+        </label>
+      </div>
+    </div>
+
+    <!-- Mobile close -->
+    <button class="btn btn-primary btn-full" id="applyFiltersBtn" style="margin-top:1rem; display:none;">
+      Apply Filters
+    </button>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="products-main">
+    <!-- Search & Sort Bar -->
+    <div class="products-toolbar">
+      <div class="input-group search-wrap">
+        <span class="input-icon">🔍</span>
+        <input type="text" class="input" id="searchInput" placeholder="Search products..." />
+      </div>
+      <div class="toolbar-right">
+        <span class="results-count" id="resultsCount">Showing 18 products</span>
+        <select class="input" id="sortSelect" style="max-width:190px;">
+          <option value="default">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Best Rated</option>
+          <option value="newest">Newest First</option>
+        </select>
+        <button class="btn btn-ghost btn-sm" id="toggleFiltersBtn" style="display:none;">⚙️ Filters</button>
+      </div>
+    </div>
+
+    <!-- Category Chips -->
+    <div class="category-chips" id="categoryChips">
+      <!-- Populated by JS -->
+    </div>
+
+    <!-- Products Grid -->
+    <div class="products-grid" id="productsGrid">
+      <!-- Skeleton loaders -->
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+      <div class="skeleton skeleton-card"></div>
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state hidden" id="emptyState">
+      <div class="empty-icon">🔍</div>
+      <h3>No products found</h3>
+      <p>Try adjusting your search or filters to find what you're looking for.</p>
+      <button class="btn btn-primary" id="clearFiltersEmpty">Clear Filters</button>
+    </div>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;">
+          <div class="logo-icon">🛍</div><span>ShopEase</span>
+        </a>
+        <p>Your one-stop destination for premium products with the best deals and fastest shipping.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">🐦</a>
+          <a href="#" class="social-btn">📸</a>
+          <a href="#" class="social-btn">📘</a>
+          <a href="#" class="social-btn">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul>
+        <li><a href="products.html">All Products</a></li>
+        <li><a href="products.html?category=electronics">Electronics</a></li>
+        <li><a href="products.html?category=fashion">Fashion</a></li>
+        <li><a href="products.html?category=home">Home & Living</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Help</h4><ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ShopEase. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toastContainer"></div>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

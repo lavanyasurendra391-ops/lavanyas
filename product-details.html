@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details – ShopEase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/product-details.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🛍</div><span>ShopEase</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Products</a>
+      <a href="cart.html">Cart</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="darkToggle">🌙</button>
+      <button class="nav-icon-btn" onclick="window.location='products.html'">
+        🤍 <span id="wishlistCount" class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="nav-icon-btn" onclick="window.location='cart.html'">
+        🛒 <span id="cartCount" class="cart-badge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="products.html" class="active">🛍️ Products</a>
+  <a href="cart.html">🛒 Cart</a>
+  <a href="dashboard.html">📊 Dashboard</a>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="page-hero" style="padding:1.5rem 0;">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span>›</span>
+      <a href="products.html">Products</a>
+      <span>›</span>
+      <span id="breadcrumbProduct">Product</span>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT DETAIL -->
+<div class="container section-sm" id="productDetailContainer">
+  <!-- Skeleton -->
+  <div class="product-detail-grid" id="productSkeleton">
+    <div class="skeleton" style="height:460px; border-radius:24px;"></div>
+    <div style="padding:1rem;">
+      <div class="skeleton skeleton-text wide" style="height:20px; margin-bottom:0.5rem;"></div>
+      <div class="skeleton skeleton-text wide" style="height:36px; margin-bottom:1rem;"></div>
+      <div class="skeleton skeleton-text medium" style="height:16px; margin-bottom:0.5rem;"></div>
+      <div class="skeleton skeleton-text short" style="height:28px; margin-bottom:1.5rem;"></div>
+      <div class="skeleton skeleton-text wide" style="height:100px; margin-bottom:1.5rem;"></div>
+      <div class="skeleton skeleton-text medium" style="height:52px; border-radius:12px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT CONTENT (filled by JS) -->
+<div class="container" id="productContent" style="display:none; padding-bottom:3rem;">
+  <div class="product-detail-grid">
+    <!-- IMAGE GALLERY -->
+    <div class="product-gallery">
+      <div class="main-image-wrap glass-card">
+        <img id="mainImage" src="" alt="Product" />
+        <button class="wishlist-btn gallery-wish" id="detailWishBtn">🤍</button>
+        <span id="detailBadge" class="product-badge sale" style="display:none;"></span>
+      </div>
+      <div class="thumbnail-strip" id="thumbnailStrip">
+        <!-- Thumbnails populated by JS -->
+      </div>
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="product-info">
+      <div class="product-meta-row">
+        <span class="product-category" id="detailCategory"></span>
+        <span class="badge badge-success" id="detailStock"></span>
+      </div>
+      <h1 class="detail-title" id="detailTitle"></h1>
+
+      <!-- Rating -->
+      <div class="product-rating detail-rating">
+        <div class="stars" id="detailStars"></div>
+        <span class="rating-value" id="detailRatingVal"></span>
+        <span class="rating-count" id="detailReviews"></span>
+        <a href="#reviews" class="rating-link">Read reviews →</a>
+      </div>
+
+      <!-- Price -->
+      <div class="detail-price-block">
+        <span class="detail-price" id="detailPrice"></span>
+        <span class="detail-original" id="detailOriginal"></span>
+        <span class="detail-discount" id="detailDiscount"></span>
+      </div>
+
+      <!-- Description -->
+      <p class="detail-desc" id="detailDesc"></p>
+
+      <!-- Tags -->
+      <div class="detail-tags" id="detailTags"></div>
+
+      <!-- Quantity -->
+      <div class="detail-qty-row">
+        <span class="detail-label">Quantity</span>
+        <div class="qty-control">
+          <button class="qty-btn" id="qtyMinus">−</button>
+          <input type="number" class="qty-input" id="qtyInput" value="1" min="1" max="99" />
+          <button class="qty-btn" id="qtyPlus">+</button>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="detail-actions">
+        <button class="btn btn-primary btn-lg" id="addToCartBtn" style="flex:1;">
+          🛒 Add to Cart
+        </button>
+        <button class="btn btn-outline btn-lg" id="buyNowBtn" style="flex:1;">
+          ⚡ Buy Now
+        </button>
+      </div>
+
+      <!-- Features -->
+      <div class="detail-features">
+        <div class="feature-item"><span>🚚</span> Free shipping on this item</div>
+        <div class="feature-item"><span>🔄</span> 30-day easy returns</div>
+        <div class="feature-item"><span>🛡️</span> 1-year warranty included</div>
+        <div class="feature-item"><span>📦</span> In stock — ships in 1–2 days</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <div style="margin-top:4rem;">
+    <div class="section-header" style="margin-bottom:2rem;">
+      <div class="subtitle">💡 You Might Also Like</div>
+      <h2>Related <span class="text-gradient">Products</span></h2>
+    </div>
+    <div class="products-grid" id="relatedGrid"></div>
+  </div>
+
+  <!-- REVIEWS SECTION -->
+  <div id="reviews" style="margin-top:4rem;">
+    <div class="section-header" style="margin-bottom:2rem; text-align:left;">
+      <h2>Customer <span class="text-gradient">Reviews</span></h2>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;"><div class="logo-icon">🛍</div><span>ShopEase</span></a>
+        <p>Your one-stop destination for premium products.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">🐦</a><a href="#" class="social-btn">📸</a>
+          <a href="#" class="social-btn">📘</a><a href="#" class="social-btn">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul>
+        <li><a href="products.html">All Products</a></li>
+        <li><a href="products.html?category=electronics">Electronics</a></li>
+        <li><a href="products.html?category=fashion">Fashion</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Help</h4><ul>
+        <li><a href="#">FAQ</a></li><li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="#">About Us</a></li><li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 ShopEase. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toastContainer"></div>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/product-details.js"></script>
+</body>
+</html>

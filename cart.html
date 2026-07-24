@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cart – ShopEase</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/cart.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon">🛍</div><span>ShopEase</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Products</a>
+      <a href="cart.html" class="active">Cart</a>
+      <a href="dashboard.html">Dashboard</a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="darkToggle">🌙</button>
+      <button class="nav-icon-btn" onclick="window.location='products.html'">
+        🤍 <span id="wishlistCount" class="cart-badge" style="display:none">0</span>
+      </button>
+      <button class="nav-icon-btn" onclick="window.location='cart.html'">
+        🛒 <span id="cartCount" class="cart-badge">0</span>
+      </button>
+      <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">🏠 Home</a>
+  <a href="products.html">🛍️ Products</a>
+  <a href="cart.html" class="active">🛒 Cart</a>
+  <a href="dashboard.html">📊 Dashboard</a>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <h2>Your <span class="text-gradient">Cart</span></h2>
+    <div class="breadcrumb">
+      <a href="index.html">Home</a><span>›</span><span>Cart</span>
+    </div>
+  </div>
+</div>
+
+<!-- CART CONTENT -->
+<div class="container section-sm">
+  <!-- Progress Steps -->
+  <div class="checkout-steps">
+    <div class="step active"><span class="step-num">1</span><span class="step-label">Cart</span></div>
+    <div class="step-line"></div>
+    <div class="step"><span class="step-num">2</span><span class="step-label">Shipping</span></div>
+    <div class="step-line"></div>
+    <div class="step"><span class="step-num">3</span><span class="step-label">Payment</span></div>
+    <div class="step-line"></div>
+    <div class="step"><span class="step-num">4</span><span class="step-label">Confirm</span></div>
+  </div>
+
+  <!-- Cart Layout -->
+  <div class="cart-layout" id="cartLayout">
+    <!-- Cart Items -->
+    <div class="cart-items-section">
+      <div class="cart-section-header">
+        <h3>Shopping Cart <span id="cartItemsCount" class="badge badge-primary">0 items</span></h3>
+        <button class="btn btn-ghost btn-sm" id="clearCartBtn">🗑 Clear All</button>
+      </div>
+      <div id="cartItemsList"></div>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary glass-card">
+      <h3>Order Summary</h3>
+      <div class="summary-rows">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="summarySubtotal">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="summaryShipping" class="text-success">Free</span>
+        </div>
+        <div class="summary-row" id="discountRow" style="display:none;">
+          <span>Discount</span>
+          <span id="summaryDiscount" class="text-success">-$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Tax (8%)</span>
+          <span id="summaryTax">$0.00</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <span>Total</span>
+          <span id="summaryTotal">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Coupon -->
+      <div class="coupon-section">
+        <div class="input-group">
+          <span class="input-icon">🏷️</span>
+          <input type="text" class="input" id="couponInput" placeholder="Enter coupon code" />
+        </div>
+        <button class="btn btn-outline btn-sm" id="applyCoupon" style="margin-top:0.5rem; width:100%;">Apply Coupon</button>
+        <p class="coupon-hint">Try: <strong>SAVE10</strong> or <strong>SUMMER20</strong></p>
+      </div>
+
+      <button class="btn btn-primary btn-full btn-lg" id="checkoutBtn" style="margin-top:1.5rem;">
+        🔒 Proceed to Checkout
+      </button>
+      <a href="products.html" class="btn btn-ghost btn-full" style="margin-top:0.75rem;">
+        ← Continue Shopping
+      </a>
+
+      <!-- Payment icons -->
+      <div class="payment-icons">
+        <span>Accepted payments:</span>
+        <div class="payment-badges">
+          <span class="pay-badge">💳 Visa</span>
+          <span class="pay-badge">💳 MC</span>
+          <span class="pay-badge">🅿️ PayPal</span>
+          <span class="pay-badge">🍎 Apple Pay</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty Cart State -->
+  <div class="empty-cart hidden" id="emptyCart">
+    <div class="empty-cart-icon">🛒</div>
+    <h2>Your cart is empty</h2>
+    <p>Looks like you haven't added anything to your cart yet. Start shopping and find something you love!</p>
+    <a href="products.html" class="btn btn-primary btn-lg" style="margin-top:1.5rem;">
+      🛍️ Start Shopping
+    </a>
+  </div>
+</div>
+
+<!-- YOU MIGHT ALSO LIKE -->
+<div class="container" style="padding-bottom:4rem;" id="suggestionsSection">
+  <div class="section-header">
+    <div class="subtitle">💡 Recommended for You</div>
+    <h2>You Might <span class="text-gradient">Also Like</span></h2>
+  </div>
+  <div class="products-grid" id="suggestionsGrid"></div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay hidden" id="checkoutModal">
+  <div class="modal-box glass-card">
+    <div class="modal-success-icon">🎉</div>
+    <h2>Order Placed!</h2>
+    <p>Thank you for your order. You'll receive a confirmation email shortly.</p>
+    <div class="modal-order-num">Order #SE-<span id="orderNumber"></span></div>
+    <div class="modal-actions">
+      <button class="btn btn-primary btn-full" id="modalContinue">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;"><div class="logo-icon">🛍</div><span>ShopEase</span></a>
+        <p>Your one-stop destination for premium products.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">🐦</a><a href="#" class="social-btn">📸</a>
+          <a href="#" class="social-btn">📘</a><a href="#" class="social-btn">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Shop</h4><ul>
+        <li><a href="products.html">All Products</a></li>
+        <li><a href="products.html?category=electronics">Electronics</a></li>
+        <li><a href="products.html?category=fashion">Fashion</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Help</h4><ul>
+        <li><a href="#">FAQ</a></li><li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Company</h4><ul>
+        <li><a href="#">About Us</a></li><li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 ShopEase. All rights reserved.</p></div>
+  </div>
+</footer>
+
+<div class="toast-container" id="toastContainer"></div>
+<button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+</body>
+</html>
